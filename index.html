@@ -3,52 +3,92 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Miquel Terreu - Marketing Portfolio</title>
+    <title>Miquel Terreu | Interactive Showcase</title>
     <style>
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            -webkit-tap-highlight-color: transparent;
         }
 
         body {
-            background-color: #f2f2f7;
-            color: #1d1d1f;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            background: #0d0d0e;
+            color: #f5f5f7;
             min-height: 100vh;
-            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            overflow-x: hidden;
+            padding: 20px 10px;
         }
 
+        /* Ambient Glow & Video Hero Header */
+        .hero-presentation {
+            text-align: center;
+            margin-bottom: 25px;
+            animation: fadeIn 1.2s ease-out;
+        }
+
+        .hero-presentation h1 {
+            font-size: 2.2rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #ffffff 30%, #8e8e93 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: -0.5px;
+        }
+
+        .hero-presentation p {
+            font-size: 0.95rem;
+            color: #a1a1a6;
+            margin-top: 6px;
+            font-weight: 400;
+        }
+
+        .badge-live {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            margin-bottom: 12px;
+            color: #30d158;
+        }
+
+        .dot {
+            width: 7px;
+            height: 7px;
+            background-color: #30d158;
+            border-radius: 50%;
+            box-shadow: 0 0 8px #30d158;
+        }
+
+        /* Frame de iPhone */
         .phone-container {
             width: 100%;
             max-width: 380px;
-            height: 740px;
-            background: #ffffff;
-            border-radius: 44px;
-            box-shadow: 0 25px 50px rgba(0,0,0,0.15);
-            border: 10px solid #1d1d1f;
+            height: 730px;
+            background: #000000;
+            border-radius: 48px;
+            box-shadow: 0 0 50px rgba(0, 122, 255, 0.15), 0 20px 40px rgba(0, 0, 0, 0.8);
+            border: 10px solid #2c2c2e;
             position: relative;
             overflow: hidden;
             display: flex;
             flex-direction: column;
         }
 
-        .phone-header {
-            padding: 18px 24px 10px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 0.8rem;
-            font-weight: 600;
-        }
-
+        /* Top Notch */
         .notch {
             width: 110px;
-            height: 20px;
-            background: #1d1d1f;
+            height: 22px;
+            background: #2c2c2e;
             border-bottom-left-radius: 14px;
             border-bottom-right-radius: 14px;
             margin: 0 auto;
@@ -56,96 +96,134 @@
             top: 0;
             left: 50%;
             transform: translateX(-50%);
+            z-index: 20;
         }
 
+        .phone-header {
+            padding: 16px 24px 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: #ffffff;
+            z-index: 10;
+        }
+
+        /* Pantalla Principal estilo iOS App Grid */
         .screen {
             flex: 1;
-            padding: 20px;
+            padding: 24px 20px;
             display: flex;
             flex-direction: column;
-            overflow-y: auto;
+            justify-content: space-between;
+            background: linear-gradient(180deg, #1c1c1e 0%, #000000 100%);
         }
 
-        .profile-header {
+        .user-card {
             text-align: center;
-            margin-top: 10px;
-            margin-bottom: 25px;
+            margin-top: 15px;
         }
 
-        .profile-header h1 {
+        .avatar {
+            width: 75px;
+            height: 75px;
+            border-radius: 50%;
+            background: #2c2c2e;
+            margin: 0 auto 12px;
+            border: 2px solid #0a84ff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
             font-size: 1.5rem;
-            font-weight: 700;
-            color: #1d1d1f;
-        }
-
-        .profile-header p {
-            font-size: 0.85rem;
-            color: #86868b;
-            margin-top: 4px;
+            color: #0a84ff;
         }
 
         .app-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: 16px;
+            margin-top: 20px;
         }
 
         .app-card {
-            background: #fbfbfd;
-            border: 1px solid #e5e5ea;
-            border-radius: 22px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border-radius: 24px;
             padding: 18px;
             display: flex;
             flex-direction: column;
             align-items: flex-start;
             cursor: pointer;
-            transition: all 0.2s ease;
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .app-card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 18px rgba(0,0,0,0.08);
-            border-color: #d2d2d7;
+            transform: translateY(-4px) scale(1.02);
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.25);
+        }
+
+        /* Icono App Notas iOS */
+        .icon-notes {
+            background: #ffffff;
+            color: #000;
+            position: relative;
+        }
+
+        .icon-notes::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 12px;
+            background: #ffd60a;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
         }
 
         .app-icon {
-            width: 44px;
-            height: 44px;
+            width: 46px;
+            height: 46px;
             border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 1.3rem;
-            margin-bottom: 12px;
-            color: white;
+            margin-bottom: 10px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
         }
 
-        .icon-about { background: linear-gradient(135deg, #007aff, #5856d6); }
         .icon-work { background: linear-gradient(135deg, #ff9500, #ff5e3a); }
-        .icon-resume { background: linear-gradient(135deg, #34c759, #30b0c7); }
-        .icon-contact { background: linear-gradient(135deg, #af52de, #ff2d55); }
+        .icon-resume { background: linear-gradient(135deg, #30d158, #0a84ff); }
+        .icon-contact { background: linear-gradient(135deg, #bf5af2, #ff375f); }
 
         .app-card h3 {
             font-size: 0.95rem;
             font-weight: 600;
+            color: #ffffff;
         }
 
         .app-card span {
-            font-size: 0.75rem;
-            color: #86868b;
+            font-size: 0.72rem;
+            color: #8e8e93;
             margin-top: 2px;
         }
 
+        /* Modales estilo App iOS */
         .modal {
             position: absolute;
             top: 0; left: 0; right: 0; bottom: 0;
-            background: #ffffff;
-            z-index: 10;
-            padding: 35px 22px 22px;
+            background: #1c1c1e;
+            z-index: 30;
+            padding: 35px 20px 20px;
             display: none;
             flex-direction: column;
             overflow-y: auto;
-            animation: slideUp 0.3s ease-out;
+            animation: slideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         @keyframes slideUp {
@@ -157,12 +235,15 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 20px;
+            margin-bottom: 16px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
         }
 
         .close-btn {
-            background: #e5e5ea;
+            background: rgba(255, 255, 255, 0.15);
             border: none;
+            color: #fff;
             width: 30px;
             height: 30px;
             border-radius: 50%;
@@ -170,166 +251,230 @@
             cursor: pointer;
         }
 
-        .modal-body h2 {
-            font-size: 1.3rem;
+        /* Interfaz Modal NOTAS iOS */
+        .notes-theme {
+            background: #000000 !important;
+            color: #ffffff !important;
+        }
+
+        .notes-date {
+            font-size: 0.75rem;
+            color: #8e8e93;
+            text-align: center;
             margin-bottom: 12px;
         }
 
-        .modal-body p {
-            font-size: 0.88rem;
-            color: #424245;
-            line-height: 1.5;
-            margin-bottom: 14px;
+        .notes-content {
+            background: #1c1c1e;
+            border-radius: 16px;
+            padding: 16px;
+            border: 1px solid rgba(255, 214, 10, 0.2);
+            font-size: 0.9rem;
+            line-height: 1.6;
+            color: #e5e5ea;
         }
 
-        .job-block {
-            margin-bottom: 16px;
-            padding-bottom: 12px;
-            border-bottom: 1px solid #f2f2f7;
+        /* Work Cards */
+        .work-card {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 16px;
+            padding: 14px;
+            margin-bottom: 12px;
         }
 
-        .job-title {
-            font-weight: 600;
-            font-size: 0.95rem;
-        }
-
-        .job-sub {
-            font-size: 0.8rem;
-            color: #86868b;
-            margin-bottom: 6px;
-        }
-
-        .tag {
+        .work-tag {
             display: inline-block;
-            background: #f2f2f7;
-            padding: 4px 10px;
-            border-radius: 12px;
-            font-size: 0.75rem;
-            color: #1d1d1f;
-            margin-right: 4px;
-            margin-bottom: 6px;
+            background: rgba(10, 132, 255, 0.2);
+            color: #0a84ff;
+            font-size: 0.7rem;
+            padding: 3px 8px;
+            border-radius: 8px;
+            margin-top: 6px;
+            font-weight: 600;
+        }
+
+        /* Interactive Contact Buttons */
+        .btn-action {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            width: 100%;
+            padding: 14px;
+            background: #0a84ff;
+            color: #fff;
+            border-radius: 14px;
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 10px;
+            transition: background 0.2s;
+        }
+
+        .btn-action:hover {
+            background: #0071e3;
+        }
+
+        .btn-secondary {
+            background: rgba(255,255,255,0.1);
+            color: #fff;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
     </style>
 </head>
 <body>
 
-<div class="phone-container">
-    <div class="notch"></div>
-    <div class="phone-header">
-        <span>9:41</span>
-        <span>Miquel Terreu</span>
+    <!-- Header Presentación Estilo Vídeo -->
+    <div class="hero-presentation">
+        <div class="badge-live"><span class="dot"></span> Hola, soy Miquel</div>
+        <h1>Marketing Portfolio</h1>
+        <p>Toca las aplicaciones para interactuar con mi perfil</p>
     </div>
 
-    <div class="screen">
-        <div class="profile-header">
-            <h1>Miquel Terreu</h1>
-            <p>Marketing & Retail Specialist</p>
+    <!-- Teléfono Interactivo -->
+    <div class="phone-container">
+        <div class="notch"></div>
+        <div class="phone-header">
+            <span>9:41</span>
+            <span>UVic Student</span>
         </div>
 
-        <div class="app-grid">
-            <div class="app-card" onclick="openApp('about')">
-                <div class="app-icon icon-about">👤</div>
-                <h3>About Me</h3>
-                <span>Perfil y visión</span>
+        <div class="screen">
+            <div class="user-card">
+                <div class="avatar">MT</div>
+                <h2 style="font-size: 1.3rem;">Miquel Terreu</h2>
+                <p style="font-size: 0.8rem; color: #8e8e93;">Marketing & Retail Strategy</p>
             </div>
-            <div class="app-card" onclick="openApp('work')">
-                <div class="app-icon icon-work">📊</div>
-                <h3>My Work</h3>
-                <span>Experiencia real</span>
+
+            <!-- Grid de Apps -->
+            <div class="app-grid">
+                <!-- App Notas (About Me) -->
+                <div class="app-card" onclick="openApp('about')">
+                    <div class="app-icon icon-notes">📝</div>
+                    <h3>About Me</h3>
+                    <span>Notas de iPhone</span>
+                </div>
+
+                <!-- App My Work -->
+                <div class="app-card" onclick="openApp('work')">
+                    <div class="app-icon icon-work">⚡</div>
+                    <h3>My Work</h3>
+                    <span>Eventos & Marca</span>
+                </div>
+
+                <!-- App Resumen / CV -->
+                <div class="app-card" onclick="openApp('resume')">
+                    <div class="app-icon icon-resume">📄</div>
+                    <h3>Resumen</h3>
+                    <span>Abrir CV PDF</span>
+                </div>
+
+                <!-- App Contact -->
+                <div class="app-card" onclick="openApp('contact')">
+                    <div class="app-icon icon-contact">💬</div>
+                    <h3>Contact</h3>
+                    <span>Hablemos</span>
+                </div>
             </div>
-            <div class="app-card" onclick="openApp('resume')">
-                <div class="app-icon icon-resume">📄</div>
-                <h3>Resumen</h3>
-                <span>Skills & Formación</span>
+        </div>
+
+        <!-- MODAL ABOUT ME (Estilo Notas iPhone) -->
+        <div id="modal-about" class="modal notes-theme">
+            <div class="modal-header">
+                <span style="color: #ffd60a; font-weight: 600;">📌 Notas</span>
+                <button class="close-btn" onclick="closeApp()">×</button>
             </div>
-            <div class="app-card" onclick="openApp('contact')">
-                <div class="app-icon icon-contact">✉️</div>
-                <h3>Contact</h3>
-                <span>Conectemos</span>
+            <div class="notes-date">28 de octubre de 2026, 11:20</div>
+            <div class="notes-content">
+                <h3 style="color: #ffd60a; margin-bottom: 8px;">Miquel Terreu — UVic</h3>
+                <p>Estudiante de 2º curso del Grado en Marketing en la <b>Universitat de Vic (UVic)</b>.</p>
+                <br>
+                <p>Mi verdadero punto fuerte no es soltar teoría académica, sino conectar la <b>realidad del cliente a pie de calle</b> con la estrategia de marca. Sé moverme en eventos masivos, gestionar la presión del retail real y aportar criterio práctico en equipos de marketing.</p>
+            </div>
+        </div>
+
+        <!-- MODAL MY WORK -->
+        <div id="modal-work" class="modal">
+            <div class="modal-header">
+                <span style="font-weight: 600;">My Work</span>
+                <button class="close-btn" onclick="closeApp()">×</button>
+            </div>
+            
+            <div class="work-card">
+                <h4 style="color: #fff;">New Balance — Activation & Retail</h4>
+                <p style="font-size: 0.8rem; color: #a1a1a6; margin-top: 4px;">Abril 2025 - Actualidad</p>
+                <p style="font-size: 0.85rem; color: #e5e5ea; margin-top: 6px;">Venta especializada y atención directa. Destacado: <b>Desplazamiento operativo a la Maratón de Valencia</b> para activación de marca y soporte directo en evento deportivo masivo.</p>
+                <span class="work-tag">Maratón Valencia</span>
+                <span class="work-tag">Retail Experience</span>
+            </div>
+
+            <div class="work-card">
+                <h4 style="color: #fff;">TOUR21 — Marketing & Comms</h4>
+                <p style="font-size: 0.8rem; color: #a1a1a6; margin-top: 4px;">Octubre 2024 - Marzo 2025</p>
+                <p style="font-size: 0.85rem; color: #e5e5ea; margin-top: 6px;">Gestión de redes sociales, planificación de contenido, relaciones públicas y seguimiento de campañas promocionales.</p>
+            </div>
+
+            <div class="work-card">
+                <h4 style="color: #fff;">24Segons — Operations & Sales</h4>
+                <p style="font-size: 0.8rem; color: #a1a1a6; margin-top: 4px;">Octubre 2023 - Octubre 2024</p>
+                <p style="font-size: 0.85rem; color: #e5e5ea; margin-top: 6px;">Atención al cliente en tienda y gestión de recogidas/pedidos e-commerce.</p>
+            </div>
+        </div>
+
+        <!-- MODAL RESUMEN (CV PDF) -->
+        <div id="modal-resume" class="modal">
+            <div class="modal-header">
+                <span style="font-weight: 600;">Currículum Vitae</span>
+                <button class="close-btn" onclick="closeApp()">×</button>
+            </div>
+            <div style="text-align: center; margin-top: 20px;">
+                <p style="font-size: 0.9rem; color: #a1a1a6; margin-bottom: 16px;">Puedes consultar o descargar mi CV completo en PDF:</p>
+                
+                <!-- Enlace al PDF subido -->
+                <a href="CV_Miquel_Terreu_.pdf" target="_blank" class="btn-action">
+                    👁️ Ver CV en PDF
+                </a>
+                <a href="CV_Miquel_Terreu_.pdf" download class="btn-action btn-secondary" style="margin-top: 8px;">
+                    ⬇️ Descargar PDF
+                </a>
+            </div>
+        </div>
+
+        <!-- MODAL CONTACT -->
+        <div id="modal-contact" class="modal">
+            <div class="modal-header">
+                <span style="font-weight: 600;">Contacto</span>
+                <button class="close-btn" onclick="closeApp()">×</button>
+            </div>
+            <div style="margin-top: 10px;">
+                <h3 style="font-size: 1.1rem; margin-bottom: 8px;">¿Hablamos?</h3>
+                <p style="font-size: 0.85rem; color: #a1a1a6; margin-bottom: 16px;">Disponible para prácticas de 3º de Grado en Marketing en Barcelona o alrededores.</p>
+                
+                <a href="mailto:miquelterreubalaguer@gmail.com" class="btn-action">
+                    ✉️ Enviar Email
+                </a>
+
+                <!-- Reemplaza el enlace con tu URL real de LinkedIn -->
+                <a href="https://linkedin.com/in/miquelterreu" target="_blank" class="btn-action btn-secondary">
+                    🔗 Mi perfil de LinkedIn
+                </a>
             </div>
         </div>
     </div>
 
-    <!-- Modales -->
-    <div id="modal-about" class="modal">
-        <div class="modal-header">
-            <span>About Me</span>
-            <button class="close-btn" onclick="closeApp()">×</button>
-        </div>
-        <div class="modal-body">
-            <h2>Sobre mí</h2>
-            <p>Estudiante de 2º de Grado en Marketing en la Universitat EUM. Mi punto fuerte radica en conectar la experiencia directa en tienda y atención al cliente con la organización operativa y la gestión de contenido digital.</p>
-            <span class="tag">Retail Experience</span>
-            <span class="tag">Estrategia Digital</span>
-            <span class="tag">Gestión Operativa</span>
-        </div>
-    </div>
+    <script>
+        function openApp(appId) {
+            document.getElementById('modal-' + appId).style.display = 'flex';
+        }
 
-    <div id="modal-work" class="modal">
-        <div class="modal-header">
-            <span>My Work</span>
-            <button class="close-btn" onclick="closeApp()">×</button>
-        </div>
-        <div class="modal-body">
-            <h2>Experiencia Destacada</h2>
-            <div class="job-block">
-                <div class="job-title">New Balance - Sales Assistant</div>
-                <div class="job-sub">Abril 2025 - Actualidad</div>
-                <p>Atención personalizada, asesoramiento técnico en producto deportivo y gestión directa de experiencia de marca en retail.</p>
-            </div>
-            <div class="job-block">
-                <div class="job-title">TOUR21 - Marketing & Comms</div>
-                <div class="job-sub">Octubre 2024 - Març 2025</div>
-                <p>Gestión de redes sociales, planificación de contenidos, soporte en relaciones públicas y seguimiento de campañas promocionales.</p>
-            </div>
-            <div class="job-block">
-                <div class="job-title">24Segons - Retail & Ecommerce Ops</div>
-                <div class="job-sub">Octubre 2023 - Octubre 2024</div>
-                <p>Venta directa en tienda y soporte logístico en la gestión de pedidos web y retiradas en punto de venta.</p>
-            </div>
-        </div>
-    </div>
-
-    <div id="modal-resume" class="modal">
-        <div class="modal-header">
-            <span>Resumen</span>
-            <button class="close-btn" onclick="closeApp()">×</button>
-        </div>
-        <div class="modal-body">
-            <h2>Formación & Tools</h2>
-            <p><b>Grado en Marketing</b> — Universitat EUM</p>
-            <p><b>Técnico Superior Marketing y Publicidad</b> — Inst. dels Aliments de BCN</p>
-            <p><b>CFGM Activitats Comercials</b> — La Salle Barceloneta</p>
-            <hr style="margin: 12px 0; border: none; border-top: 1px solid #e5e5ea;">
-            <p><b>Herramientas:</b> Excel (Tablas dinámicas, BUSCARV), Notion, Trello, Canva, Meta Business Suite, WordPress básico.</p>
-            <p><b>Idiomas:</b> Catalán (Nativo), Castellano (Nativo), Inglés (B1).</p>
-        </div>
-    </div>
-
-    <div id="modal-contact" class="modal">
-        <div class="modal-header">
-            <span>Contact</span>
-            <button class="close-btn" onclick="closeApp()">×</button>
-        </div>
-        <div class="modal-body">
-            <h2>Hablemos</h2>
-            <p>Buscando oportunidades de prácticas académicas para 3º de Grado en Marketing.</p>
-            <p><b>Email:</b> miquelterreubalaguer@gmail.com</p>
-            <p><b>Ubicación:</b> Barcelona, España</p>
-        </div>
-    </div>
-</div>
-
-<script>
-    function openApp(appId) {
-        document.getElementById('modal-' + appId).style.display = 'flex';
-    }
-
-    function closeApp() {
-        const modals = document.querySelectorAll('.modal');
-        modals.forEach(m => m.style.display = 'none');
-    }
-</script>
-
+        function closeApp() {
+            const modals = document.querySelectorAll('.modal');
+            modals.forEach(m => m.style.display = 'none');
+        }
+    </script>
 </body>
 </html>
