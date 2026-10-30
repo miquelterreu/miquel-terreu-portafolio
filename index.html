@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Miquel Terreu - Marketing Portfolio</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: #f2f2f7;
+            color: #1d1d1f;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .phone-container {
+            width: 100%;
+            max-width: 380px;
+            height: 740px;
+            background: #ffffff;
+            border-radius: 44px;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.15);
+            border: 10px solid #1d1d1f;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .phone-header {
+            padding: 18px 24px 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .notch {
+            width: 110px;
+            height: 20px;
+            background: #1d1d1f;
+            border-bottom-left-radius: 14px;
+            border-bottom-right-radius: 14px;
+            margin: 0 auto;
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .screen {
+            flex: 1;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            overflow-y: auto;
+        }
+
+        .profile-header {
+            text-align: center;
+            margin-top: 10px;
+            margin-bottom: 25px;
+        }
+
+        .profile-header h1 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #1d1d1f;
+        }
+
+        .profile-header p {
+            font-size: 0.85rem;
+            color: #86868b;
+            margin-top: 4px;
+        }
+
+        .app-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+        }
+
+        .app-card {
+            background: #fbfbfd;
+            border: 1px solid #e5e5ea;
+            border-radius: 22px;
+            padding: 18px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .app-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 18px rgba(0,0,0,0.08);
+            border-color: #d2d2d7;
+        }
+
+        .app-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            margin-bottom: 12px;
+            color: white;
+        }
+
+        .icon-about { background: linear-gradient(135deg, #007aff, #5856d6); }
+        .icon-work { background: linear-gradient(135deg, #ff9500, #ff5e3a); }
+        .icon-resume { background: linear-gradient(135deg, #34c759, #30b0c7); }
+        .icon-contact { background: linear-gradient(135deg, #af52de, #ff2d55); }
+
+        .app-card h3 {
+            font-size: 0.95rem;
+            font-weight: 600;
+        }
+
+        .app-card span {
+            font-size: 0.75rem;
+            color: #86868b;
+            margin-top: 2px;
+        }
+
+        .modal {
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: #ffffff;
+            z-index: 10;
+            padding: 35px 22px 22px;
+            display: none;
+            flex-direction: column;
+            overflow-y: auto;
+            animation: slideUp 0.3s ease-out;
+        }
+
+        @keyframes slideUp {
+            from { transform: translateY(100%); }
+            to { transform: translateY(0); }
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .close-btn {
+            background: #e5e5ea;
+            border: none;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .modal-body h2 {
+            font-size: 1.3rem;
+            margin-bottom: 12px;
+        }
+
+        .modal-body p {
+            font-size: 0.88rem;
+            color: #424245;
+            line-height: 1.5;
+            margin-bottom: 14px;
+        }
+
+        .job-block {
+            margin-bottom: 16px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid #f2f2f7;
+        }
+
+        .job-title {
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        .job-sub {
+            font-size: 0.8rem;
+            color: #86868b;
+            margin-bottom: 6px;
+        }
+
+        .tag {
+            display: inline-block;
+            background: #f2f2f7;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            color: #1d1d1f;
+            margin-right: 4px;
+            margin-bottom: 6px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="phone-container">
+    <div class="notch"></div>
+    <div class="phone-header">
+        <span>9:41</span>
+        <span>Miquel Terreu</span>
+    </div>
+
+    <div class="screen">
+        <div class="profile-header">
+            <h1>Miquel Terreu</h1>
+            <p>Marketing & Retail Specialist</p>
+        </div>
+
+        <div class="app-grid">
+            <div class="app-card" onclick="openApp('about')">
+                <div class="app-icon icon-about">👤</div>
+                <h3>About Me</h3>
+                <span>Perfil y visión</span>
+            </div>
+            <div class="app-card" onclick="openApp('work')">
+                <div class="app-icon icon-work">📊</div>
+                <h3>My Work</h3>
+                <span>Experiencia real</span>
+            </div>
+            <div class="app-card" onclick="openApp('resume')">
+                <div class="app-icon icon-resume">📄</div>
+                <h3>Resumen</h3>
+                <span>Skills & Formación</span>
+            </div>
+            <div class="app-card" onclick="openApp('contact')">
+                <div class="app-icon icon-contact">✉️</div>
+                <h3>Contact</h3>
+                <span>Conectemos</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modales -->
+    <div id="modal-about" class="modal">
+        <div class="modal-header">
+            <span>About Me</span>
+            <button class="close-btn" onclick="closeApp()">×</button>
+        </div>
+        <div class="modal-body">
+            <h2>Sobre mí</h2>
+            <p>Estudiante de 2º de Grado en Marketing en la Universitat EUM. Mi punto fuerte radica en conectar la experiencia directa en tienda y atención al cliente con la organización operativa y la gestión de contenido digital.</p>
+            <span class="tag">Retail Experience</span>
+            <span class="tag">Estrategia Digital</span>
+            <span class="tag">Gestión Operativa</span>
+        </div>
+    </div>
+
+    <div id="modal-work" class="modal">
+        <div class="modal-header">
+            <span>My Work</span>
+            <button class="close-btn" onclick="closeApp()">×</button>
+        </div>
+        <div class="modal-body">
+            <h2>Experiencia Destacada</h2>
+            <div class="job-block">
+                <div class="job-title">New Balance - Sales Assistant</div>
+                <div class="job-sub">Abril 2025 - Actualidad</div>
+                <p>Atención personalizada, asesoramiento técnico en producto deportivo y gestión directa de experiencia de marca en retail.</p>
+            </div>
+            <div class="job-block">
+                <div class="job-title">TOUR21 - Marketing & Comms</div>
+                <div class="job-sub">Octubre 2024 - Març 2025</div>
+                <p>Gestión de redes sociales, planificación de contenidos, soporte en relaciones públicas y seguimiento de campañas promocionales.</p>
+            </div>
+            <div class="job-block">
+                <div class="job-title">24Segons - Retail & Ecommerce Ops</div>
+                <div class="job-sub">Octubre 2023 - Octubre 2024</div>
+                <p>Venta directa en tienda y soporte logístico en la gestión de pedidos web y retiradas en punto de venta.</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-resume" class="modal">
+        <div class="modal-header">
+            <span>Resumen</span>
+            <button class="close-btn" onclick="closeApp()">×</button>
+        </div>
+        <div class="modal-body">
+            <h2>Formación & Tools</h2>
+            <p><b>Grado en Marketing</b> — Universitat EUM</p>
+            <p><b>Técnico Superior Marketing y Publicidad</b> — Inst. dels Aliments de BCN</p>
+            <p><b>CFGM Activitats Comercials</b> — La Salle Barceloneta</p>
+            <hr style="margin: 12px 0; border: none; border-top: 1px solid #e5e5ea;">
+            <p><b>Herramientas:</b> Excel (Tablas dinámicas, BUSCARV), Notion, Trello, Canva, Meta Business Suite, WordPress básico.</p>
+            <p><b>Idiomas:</b> Catalán (Nativo), Castellano (Nativo), Inglés (B1).</p>
+        </div>
+    </div>
+
+    <div id="modal-contact" class="modal">
+        <div class="modal-header">
+            <span>Contact</span>
+            <button class="close-btn" onclick="closeApp()">×</button>
+        </div>
+        <div class="modal-body">
+            <h2>Hablemos</h2>
+            <p>Buscando oportunidades de prácticas académicas para 3º de Grado en Marketing.</p>
+            <p><b>Email:</b> miquelterreubalaguer@gmail.com</p>
+            <p><b>Ubicación:</b> Barcelona, España</p>
+        </div>
+    </div>
+</div>
+
+<script>
+    function openApp(appId) {
+        document.getElementById('modal-' + appId).style.display = 'flex';
+    }
+
+    function closeApp() {
+        const modals = document.querySelectorAll('.modal');
+        modals.forEach(m => m.style.display = 'none');
+    }
+</script>
+
+</body>
+</html>
